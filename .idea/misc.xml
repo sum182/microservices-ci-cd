@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/10-naming-server/pom.xml" />
         <option value="$PROJECT_DIR$/10-cambio-service/pom.xml" />
         <option value="$PROJECT_DIR$/10-erudio-config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/naming-server/pom.xml" />
       </list>
     </option>
   </component>
