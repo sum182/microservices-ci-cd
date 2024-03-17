@@ -74,6 +74,9 @@ jobs:
           
           # docker push ${{ secrets.DOCKER_USERNAME }}/book-service:latest
 
+          # I made some changes to use the latest version in the cambio-service and book-service services. 
+          # It didn't work using the original version of erudio, so I used the same way as api-gateway and service discovery
+
 
           docker tag ${{ secrets.DOCKER_USERNAME }}/naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/naming-server:${{github.run_id}}
           docker tag ${{ secrets.DOCKER_USERNAME }}/naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/naming-server:latest
