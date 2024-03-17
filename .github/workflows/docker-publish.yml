@@ -37,13 +37,13 @@ jobs:
 
       - name: Build Cambio Microservice Jar
         working-directory: ./cambio-service
-        # run: mvn clean package -DskipTests
-        run: mvn spring-boot:build-image -DskipTests
+        run: mvn clean package -DskipTests
+        # run: mvn spring-boot:build-image -DskipTests
 
       - name: Build Book Microservice Jar
         working-directory: ./book-service
-        # run: mvn clean package -DskipTests
-        run: mvn spring-boot:build-image -DskipTests
+        run: mvn clean package -DskipTests
+        # run: mvn spring-boot:build-image -DskipTests
         
       - name: Docker Compose Build
         working-directory: ./build
@@ -83,10 +83,15 @@ jobs:
           docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{github.run_id}}
           docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
           
-          docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/cambio-service:${{github.run_id}}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest          
-          docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/book-service:${{github.run_id}}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/book-service:latest
+          # docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/cambio-service:${{github.run_id}}
+          # docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest          
+          # docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/book-service:${{github.run_id}}
+          # docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/book-service:latest
+
+          docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest ${{ secrets.DOCKER_USERNAME }}/cambio-service:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest          
+          docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:latest ${{ secrets.DOCKER_USERNAME }}/book-service:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:latest ${{ secrets.DOCKER_USERNAME }}/book-service:latest
           
           docker push ${{ secrets.DOCKER_USERNAME }}/naming-server:${{github.run_id}}
           docker push ${{ secrets.DOCKER_USERNAME }}/naming-server:latest
