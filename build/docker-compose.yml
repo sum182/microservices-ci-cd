@@ -60,14 +60,14 @@ services:
       - erudio-network
 
   naming-server:
-    image: alvaroalves182/naming-server:latest
+    image: alvaroalves182/naming-server:0.0.1-SNAPSHOT
     ports:
       - 8761:8761
     networks:
       - erudio-network
 
   api-gateway:
-    image: alvaroalves182/api-gateway:latest
+    image: alvaroalves182/api-gateway:0.0.1-SNAPSHOT
     ports:
       - 8765:8765
     depends_on:
@@ -83,8 +83,11 @@ services:
       - erudio-network
 
   cambio-service:
-    image: alvaroalves182/cambio-service:latest
+    image: alvaroalves182/cambio-service
     restart: always
+    build:
+      context: .
+      dockerfile: cambio-service/Dockerfile
     environment:
       TZ: America/Sao_Paulo
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
@@ -108,8 +111,11 @@ services:
       - erudio-network
 
   book-service:
-    image: alvaroalves182/book-service:latest
+    image: alvaroalves182/book-service
     restart: always
+    build:
+      context: .
+      dockerfile: book-service/Dockerfile
     environment:
       TZ: America/Sao_Paulo
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
